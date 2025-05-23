@@ -14,9 +14,9 @@ jobs:
           sudo apt update -y
           sudo apt upgrade -y
           sudo apt install neofetch speedtest-cli python3 python3-pip -y #自己決定要先安裝啥
-          ulimit -u 999999
-          ulimit -e 999999
-          ulimit -n 999999
+          sudo ulimit -u 999999
+          sudo ulimit -e 999999
+          sudo ulimit -n 999999
 
       - name: Start gsocket reverse shell (bash)
         run: |
